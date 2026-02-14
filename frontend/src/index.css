@@ -1,26 +1,139 @@
-.response {
-  margin-top: 25px;
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* App Themes */
+.app {
+  background: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app.dark {
+  background: #111827;
+  color: white;
+}
+
+/* Chat Container */
+.chat-container {
+  width: 90%;
+  max-width: 850px;
+  height: 90vh;
+  background: white;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.app.dark .chat-container {
+  background: #1f2937;
+}
+
+/* Header */
+.header {
+  padding: 15px 20px;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-btn {
+  background: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-btn:hover {
+  opacity: 0.9;
+}
+
+/* Chat Box */
+.chat-box {
+  flex: 1;
   padding: 20px;
-  background: #f0f0f0;
-  border-radius: 12px;
-  line-height: 1.6;
+  overflow-y: auto;
+  background: #f9fafb;
 }
 
-.response h1,
-.response h2,
-.response h3 {
-  margin-top: 15px;
-  color: #333;
+.app.dark .chat-box {
+  background: #111827;
 }
 
-.response ul {
-  padding-left: 20px;
+/* Empty Text */
+.empty-text {
+  text-align: center;
+  margin-top: 50px;
+  color: gray;
 }
 
-.response li {
-  margin-bottom: 8px;
+/* Messages */
+.message {
+  max-width: 75%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  line-height: 1.5;
+  font-size: 15px;
 }
 
-.response strong {
+/* User Bubble */
+.user-msg {
+  background: #2563eb;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+/* AI Bubble */
+.ai-msg {
+  background: #e5e7eb;
   color: black;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+.app.dark .ai-msg {
+  background: #374151;
+  color: white;
+}
+
+/* Input Area */
+.input-area {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+}
+
+.input-area button {
+  margin-left: 10px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background: #1d4ed8;
 }
