@@ -8,11 +8,15 @@ export default function App() {
   async function sendMessage() {
     setReply("Thinking... 🤖");
 
-    const response = await fetch("http://localhost:5000/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: input }),
-    });
+   const response = await fetch(
+  "https://gemini-backend-b40r.onrender.com/chat",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: input }),
+  }
+);
+
 
     const data = await response.json();
     setReply(data.reply);
