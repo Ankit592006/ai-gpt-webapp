@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import axios from "axios";
+import mongoose from "mongoose"; 
+import Chat from "./models/Chats.js";
 import { buildPrompt } from "./prompt.js";
 
 dotenv.config();
@@ -12,11 +14,25 @@ app.use(express.json());
 
 const API_KEY = process.env.GEMINI_API_KEY;
 
+// Connect to MongoDB
+mongoose
+  .connect(process.env.MONGO_URI) 
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 // Test route
 app.get("/", (req, res) => {
   res.send("Gemini Backend Running 🚀");
 });
-
+// History route
+app.get("/history", async (req, res) => {
+  try {
+    const chats = await Chat.find().sort({ createdAt: -1 }).limit(20);
+    res.json(chats);
+  } catch (error) {
+    console.error("History Error:", error);
+    res.status(500).json({ error: "Failed to fetch history" });
+  }
+});
 // Main AI route
 app.post("/chat", async (req, res) => {
   try {
@@ -40,6 +56,11 @@ app.post("/chat", async (req, res) => {
     const reply =
       response.data.candidates[0].content.parts[0].text;
 
+    // Save to MongoDB
+    const chat = new Chat({ userMessage, aiResponse: reply });
+    await chat.save();
+
+    
     res.json({ reply });
   } catch (error) {
     console.error("Gemini Error:", error.response?.data || error.message);
