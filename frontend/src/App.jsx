@@ -21,7 +21,7 @@ export default function App() {
 
     // Fetch AI response
     const response = await fetch(
-      "http://localhost:5000/chat",
+      "https://gemini-backend-b40r.onrender.com/chat",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
